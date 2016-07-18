@@ -1,0 +1,23 @@
+body{
+	background: black;
+	color: #00FF00;
+	font-family: terminal;
+}
+h1{
+	font-family: terminal;
+}
+input{
+	background:black;
+	color: #00FF00;
+	width: 100%;
+	margin-left: -5px;
+	border-width: 0;
+}
+div{
+	width: 100vw;
+	height: 80vh;
+	max-height: 80vh;
+	overflow: auto;
+	position: relative; 
+	bottom:0;
+}
