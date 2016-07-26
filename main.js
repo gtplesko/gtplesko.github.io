@@ -18,25 +18,24 @@ function ls(){//displays all available projects
 	document.getElementById('history').innerHTML = termHistory; 
 }
 function cat(arg){//reads out the javascript file
-	termHistory+= send(arg);
-	document.getElementById('history').innerHTML = termHistory;
+	var cLeng = arg.length;
+	var newArg = arg.charAt(0) + arg.charAt(cLeng-1);
+	catCallEuler(newArg);	
+	 
 }
 function help(arg){//Writes out the list of available commands and what they do
-	termHistory+= 'Available commands are:<br/>ls - Displays all files.<br/>cat - Reads out code from file.<br/>info - gives project Euler challenge description.<br/>run - Runs the file that is typed in as an argument.<br/>';
+	termHistory+= 'Available commands are:<br/>ls - Displays all files.<br/>cat - Reads out code from file.<br/>info - Displays information about the site. <br/>run - Runs the file that is typed in as an argument.<br/>';
 	document.getElementById('history').innerHTML = termHistory;
 }
 function info(arg){//gives description of arg 
-	termHistory+= 'Feature is under developement.';
+	termHistory+= 'This is a place for me to host all of my small javascript projects and use as a general test area. Please explore the site and check the console for Easter eggs.<br/>';
 	document.getElementById('history').innerHTML = termHistory;
 }
 function run(arg){//runs a javascript script
 	termHistory+= 'Running.<br/>';
 	document.getElementById('history').innerHTML = termHistory;
-	while(arg.indexOf('<br/>')!== -1){
-	 	arg = arg.replace('<br/>','');
-	}
-	console.log(arg + ' this is new');
-	eval(arg);
+	var newArg = arg+'();';
+	eval(newArg);
 }
 function toHistory(input){
 	termHistory+=input;
@@ -53,7 +52,7 @@ function runScript(e){//pulls text from textfield
 	//console.log(Key);
 	if (Key=='13'){//when executed
 		var value = document.getElementById('textArea').value;
-		console.log(value);
+		//console.log(value);
 		getArgs(value);
 	}
 }
@@ -67,9 +66,8 @@ function getArgs(arg){
 	}else if(args[0]=='help'){
 		help(args[1]);
 	}else if(args[0]=='run'){
-		if(runnable.indexOf(args[1])!==0){
-			var newArg = send(args[1]);
-			run(newArg);
+		if(runnable.indexOf(args[1])!==-1){
+			run(args[1]);
 		}
 	}else if(args[0]=='info'){
 		info(args[1]);
