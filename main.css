@@ -1,23 +1,44 @@
 body{
-	background: black;
-	color: #00FF00;
-	font-family: terminal;
+	background: white;
 }
-h1{
-	font-family: terminal;
+
+
+.title{
+	margin-top:0px;
+	border-width: .1px;
+	border: solid;
+	border-color: #2f2f2f;
+	font-size: 15px;
+	background: #1f0f1f;
+	color:white;
+	padding: 2px;
+	margin: -1px;
+}
+.icons{
+	
+	color:white;
+
 }
 input{
 	background:black;
 	color: #00FF00;
 	width: 100%;
-	margin-left: -5px;
 	border-width: 0;
 }
-div{
+.container{
 	width: 100vw;
 	height: 80vh;
 	max-height: 80vh;
 	overflow: auto;
 	position: relative; 
 	bottom:0;
+}
+.window{
+	border-width: 1px;
+	border: solid;
+	border-color: #0f0f0f;
+	background:black;
+	color: #00FF00;
+	font-family: terminal;
+
 }

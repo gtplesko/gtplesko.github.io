@@ -1,41 +1,42 @@
 //main.js
 // The purpose of this is to allow the 'terminal' to work properly.
+
+$(document).ready(function(){ 
+
+ })
+
+
+
+var runnable = ['euler1','euler2','euler3','euler4','euler5','euler6','euler7'];
+
 var termHistory = '';
-var projects = ['1','2','3','4'];
-function ls(arg){//displays all available projects
-	termHistory+= 'arg is' + arg + '<br/>';
+function ls(){//displays all available projects
+	termHistory+= 'Current available projects are: <br/>';
+	for(i in runnable){
+		termHistory+=runnable[i]+'<br/>';
+	}
 	document.getElementById('history').innerHTML = termHistory; 
 }
-function cat(arg){//reads out the historys of the javascript file
-	termHistory+= 'arg is' + arg + '<br/>';
+function cat(arg){//reads out the javascript file
+	termHistory+= send(arg);
 	document.getElementById('history').innerHTML = termHistory;
 }
 function help(arg){//Writes out the list of available commands and what they do
 	termHistory+= 'Available commands are:<br/>ls - Displays all files.<br/>cat - Reads out code from file.<br/>info - gives project Euler challenge description.<br/>run - Runs the file that is typed in as an argument.<br/>';
 	document.getElementById('history').innerHTML = termHistory;
 }
-function info(arg){//gives project euler challenge description 
-	termHistory+= 'arg is' + arg + '<br/>';
+function info(arg){//gives description of arg 
+	termHistory+= 'Feature is under developement.';
 	document.getElementById('history').innerHTML = termHistory;
 }
 function run(arg){//runs a javascript script
-	termHistory+= 'Running ' + arg + '. This may take a moment to load.<br/>';
+	termHistory+= 'Running.<br/>';
 	document.getElementById('history').innerHTML = termHistory;
-	if (arg==1){
-		go1();
-	}else if(arg==2){
-		go2();
-	}else if(arg==3){
-		go3();
-	}else if(arg==4){
-		go4();
-	}else if(arg==5){
-		go5();
-	}else if(arg==6){
-		go6();
-	}else if(arg==7){
-		go7();
+	while(arg.indexOf('<br/>')!== -1){
+	 	arg = arg.replace('<br/>','');
 	}
+	console.log(arg + ' this is new');
+	eval(arg);
 }
 function toHistory(input){
 	termHistory+=input;
@@ -53,38 +54,30 @@ function runScript(e){//pulls text from textfield
 	if (Key=='13'){//when executed
 		var value = document.getElementById('textArea').value;
 		console.log(value);
-		if (value.indexOf('ls')==0){
-			ls('frank');
-			console.log('ls');
-			document.getElementById('textArea').value='';
-			
-		}else if( value.indexOf('cat')==0){
-			cat('joe');
-			console.log('cat');
-			document.getElementById('textArea').value='';
-			
-		}else if(value.indexOf('help')==0){
-			help('taco');
-			console.log('help');
-			document.getElementById('textArea').value='';
-		
-		}else if(value.indexOf('run ')==0){
-			run(value.substring(4));
-			console.log('run');
-			document.getElementById('textArea').value='';
-		
-		}else if(value.indexOf('info')==0){
-			info('fred');
-			console.log('info');
-			document.getElementById('textArea').value='';
-		
-		}else{
-			invalid(document.getElementById('textArea').value);
-			console.log('nope');
-		}
+		getArgs(value);
 	}
 }
 
+function getArgs(arg){
+	var args = arg.split(" ");
+	if(args[0]=='ls'){
+		ls();
+	}else if(args[0]=='cat'){
+		cat(args[1]);
+	}else if(args[0]=='help'){
+		help(args[1]);
+	}else if(args[0]=='run'){
+		if(runnable.indexOf(args[1])!==0){
+			var newArg = send(args[1]);
+			run(newArg);
+		}
+	}else if(args[0]=='info'){
+		info(args[1]);
+	}else{
+		invalid(args[0]);
+	}
+	document.getElementById('textArea').value='';
+}
 
 //Useful stuff
 
