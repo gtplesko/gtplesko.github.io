@@ -1,0 +1,31 @@
+<!doctype html> 
+<html class="no-js" lang=""> 
+	<head> 
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<title>Gavin Plesko's personal page</title> 
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+		<script src="child.js"></script>
+		<script src="main.js"></script>
+	</head> 
+	<body>
+	<h2>Infinite Monkeys</h2>
+	<h3>A Genetic Algorithm on text</h3>
+		<p>For this project, I will allow you to tinker with the values to see how the algorithm works best. I have preset the conditions for what I used in testing. I haven't set limits to values.</p>
+
+		<p>Target - What your goal string is <strong>I do not suggest exceeding 140 characters.</strong></p>
+		<textarea rows="2" cols="50" id="textIn">The quick brown fox jumps over the lazy dog.</textarea>
+		<p>Pool Size - The amount of children that are in each generation <strong>Value 20-200, this will eat your processor</strong></p>
+		<input type="text" id="poolS" value="50">
+		<p>Generations - How many times the algorithm compounds <strong>Test it first with a low number</strong></p>
+		<input type="text" id="genS" value="3000">
+		<p>Mutation Order - How much text is preserved when a mutation happens (Higher value, less mutation) <strong>Suggested Value 1-5</strong></p>
+		<input type="text" id="mutaS" value="2">
+		<button onclick="run()">Run</button>
+
+		<p>This area will be updated with every 20th generation.</p>
+		<textarea rows="20" cols="75" id="textOut"></textarea>
+	</body> 
+</html>
