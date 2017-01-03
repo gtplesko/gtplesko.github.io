@@ -23,9 +23,11 @@
 		<input type="text" id="genS" value="3000">
 		<p>Mutation Order - How much text is preserved when a mutation happens (Higher value, less mutation) <strong>Suggested Value 1-5</strong></p>
 		<input type="text" id="mutaS" value="2">
-		<button onclick="run()">Run</button>
+		<button onclick="run()">Start New Genepool</button>
+		<button onclick="run2()">Continue this Genepool</button>
+		<p>Note: Continuing the genepool will only take generations and mutation changes into account.</p>
 
-		<p>This area will be updated with every 20th generation.</p>
+		<p>This area will be updated with every 20th generation. Current: <strong id='gen'></strong> </p>
 		<textarea rows="20" cols="75" id="textOut"></textarea>
 	</body> 
 </html>

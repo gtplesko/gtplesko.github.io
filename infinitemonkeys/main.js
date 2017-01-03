@@ -1,4 +1,4 @@
-
+var curgen=0;
 var poolSize = 0;
 var pool = [];
 var generations = 0;
@@ -11,6 +11,8 @@ function setup(){
 	return pool;
 }
 function update(){
+
+	curgen+=1;
 	var nextGen = [];
 	for (i in pool){
 		for (var j = 0; j < fitness(pool[i], 0); j++){
@@ -38,6 +40,27 @@ function run(){
 	generations = document.getElementById("genS").value;
 	mutations = document.getElementById("mutaS").value;
 	setup();	
+	curgen=0;
+	for( var i = 0; i < generations; i++ ){
+		(function (i)  {
+			setTimeout(function () {
+				update();
+				if(i%20){
+					
+					document.getElementById("textOut").innerHTML = pool.join('\n');
+					document.getElementById("gen").innerHTML = curgen;
+				}
+			}, 1);
+		} ) (i);
+	}
+	document.getElementById("textOut").innerHTML = pool.join('\n');
+
+
+	}
+	function run2(){
+	generations = document.getElementById("genS").value;
+	mutations = document.getElementById("mutaS").value;
+
 	
 	for( var i = 0; i < generations; i++ ){
 		(function (i)  {
@@ -45,6 +68,7 @@ function run(){
 				update();
 				if(i%20){
 					document.getElementById("textOut").innerHTML = pool.join('\n');
+					document.getElementById("gen").innerHTML = curgen;
 				}
 			}, 1);
 		} ) (i);
